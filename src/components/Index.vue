@@ -4,11 +4,6 @@
       <h1>桥梁监测简介</h1>
       <h2>{{this.$route.params.id}}</h2>
       <h2>{{this.$route.params.name}}</h2>
-      <h2>{{this.$route.params}}</h2>
-      <h2>{{this.$route.path}}</h2>
-      <h2>{{this.$route.hash}}</h2>
-      <h2>{{this.$route.fullPath}}</h2>
-      <h2>{{this.$route.redirectFrom}}</h2>
     </div>
   </div>
   <!--<div class="container">-->
