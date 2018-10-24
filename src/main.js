@@ -4,12 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-import $ from 'jquery'
+Vue.config.productionTip = false;
 
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.min'
+import echarts from 'echarts'
 
-Vue.config.productionTip = false
+Vue.prototype.$echarts = echarts;
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
@@ -17,4 +17,4 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
-})
+});

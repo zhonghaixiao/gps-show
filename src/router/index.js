@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import {Index, RealTime, Analyze, History} from "./module/components"
+import {Index, RealTime, Analyze, History, TestEcharts} from "./module/components"
 
 Vue.use(Router)
 
@@ -27,6 +27,10 @@ export default new Router({
     {
       path: '/history-gps',
       component:History
+    },
+    {
+      path: '/test',
+      component:TestEcharts
     }
   ]
 })
