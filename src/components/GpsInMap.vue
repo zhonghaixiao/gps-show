@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid">
-    <h1>GPS 实时分析</h1>
+    <h1>GPS Map</h1>
   </div>
 </template>
 

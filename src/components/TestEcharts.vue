@@ -1,6 +1,8 @@
 <template>
-  <div class="chart-container" id="chart">
+  <div class="chart-container" ref="body">
+    <div id="chart" class="chart">
 
+    </div>
   </div>
 </template>
 
@@ -11,6 +13,7 @@
 
     },
     mounted() {
+      this.$refs.body.style.height = window.innerHeight + 'px';
       let myChart = this.$echarts.init(document.getElementById('chart'));
       myChart.setOption({
         xAxis: {},
@@ -43,9 +46,13 @@
 <style scoped lang="less">
 
   .chart-container{
-    border: 1px solid black;
-    width: 500px;
-    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .chart{
+      width: 100%;
+      height: 100%;
+    }
   }
 
 </style>

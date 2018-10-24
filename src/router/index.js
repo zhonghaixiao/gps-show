@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import {Index, RealTime, Analyze, History, TestEcharts} from "./module/components"
+import {Index, RealTime, GpsInMap, History, Analyze} from "./module/components"
 
 Vue.use(Router)
 
@@ -18,7 +18,7 @@ export default new Router({
     },
     {
       path: '/realtime-gps',
-      component:RealTime
+      component:GpsInMap
     },
     {
       path: '/analyze-gps',
@@ -27,10 +27,6 @@ export default new Router({
     {
       path: '/history-gps',
       component:History
-    },
-    {
-      path: '/test',
-      component:TestEcharts
     }
   ]
 })

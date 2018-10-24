@@ -1,7 +1,7 @@
 import Index from "../../components/Index"
 import RealTime from "../../components/RealTime"
-import Analyze from "../../components/Analyze"
+import GpsInMap from "../../components/GpsInMap"
 import History from "../../components/History"
-import TestEcharts from "../../components/TestEcharts"
+import Analyze from "../../components/TestEcharts"
 
-export {Index,RealTime,Analyze,History,TestEcharts};
+export {Index,RealTime,Analyze,History, GpsInMap};
