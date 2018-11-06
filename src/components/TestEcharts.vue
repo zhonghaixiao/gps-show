@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container" ref="body">
-    <div id="chart" class="chart">
+    <div ref="chart" class="chart">
 
     </div>
   </div>
@@ -9,36 +9,48 @@
 <script>
   export default {
     name: "TestEcharts",
+    data(){
+      return {
+        gpsData: [],
+        myChart: {},
+        firstData:[],
+        isFirst: true
+      };
+    },
     created: {
 
     },
+    sockets: {
+      connect: function () {
+        console.log('socket connected');
+      },
+      gps: function (val) {
+        console.log('接收到服务端消息', JSON.parse(val));
+        let temp = JSON.parse(val);
+        if (this.isFirst){
+          this.isFirst = false;
+          this.firstData.push(...temp);
+        }
+        this.gpsData.push([temp[0]-this.firstData[0], temp[1]-this.firstData[1]]);
+        this.refreshData();
+      }
+    },
     mounted() {
       this.$refs.body.style.height = window.innerHeight + 'px';
-      let myChart = this.$echarts.init(document.getElementById('chart'));
-      myChart.setOption({
-        xAxis: {},
-        yAxis: {},
-        series: [{
-          symbolSize: 20,
-          data: [
-            [-10.0, -8.04],
-            [8.0, 6.95],
-            [-13.0, -7.58],
-            [9.0, 8.81],
-            [11.0, 8.33],
-            [14.0, 9.96],
-            [6.0, 7.24],
-            [4.0, -4.26],
-            [12.0, 10.84],
-            [-7.0, 4.82],
-            [5.0, 5.68],
-            [-1, -5],
-            [-0.2, -0.4],
-            [-1, 3]
-          ],
-          type: 'scatter'
-        }]
-      });
+      this.myChart = this.$echarts.init(this.$refs.chart);
+    },
+    methods: {
+      refreshData(){
+        this.myChart.setOption({
+          xAxis: {},
+          yAxis: {},
+          series: [{
+            symbolSize: 20,
+            data: this.gpsData,
+            type: 'scatter'
+          }]
+        });
+      }
     }
   }
 </script>

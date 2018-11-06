@@ -3,10 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
-Vue.config.productionTip = false;
-
 import echarts from 'echarts'
+import VueSocketio from 'vue-socket.io'
+
+Vue.use(VueSocketio, 'http://127.0.0.1:3000/');
 
 Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;

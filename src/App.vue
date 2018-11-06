@@ -3,6 +3,7 @@
     <div class="left-container">
       <nav-menu
         :menu-list="menu"
+        :init-index="currentPage"
         @onMenuChange="selectMenuItem"
         class="nav-menu"
       ></nav-menu>
@@ -22,8 +23,7 @@
       return {
         menu:['主页','GPS监测','GPS分析','GPS历史数据'],
         routerNames:['index','realtime-gps','analyze-gps','history-gps'],
-        routerLinks: ['/index', '/realtime-gps', '/analyze-gps', '/history-gps'],
-        currentPage: 0
+        routerLinks: ['/index', '/realtime-gps', '/analyze-gps', '/history-gps']
       }
     },
     mounted(){
@@ -32,6 +32,15 @@
     methods:{
       selectMenuItem(index){
         this.$router.push({path: this.routerLinks[index]});
+      }
+    },
+    computed: {
+      currentPage(){
+        for (let j = 0; j < this.routerLinks.length; j++) {
+          if (this.routerLinks[j] === this.$route.path){
+            return j;
+          }
+        }
       }
     },
     components: {

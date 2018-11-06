@@ -15,12 +15,16 @@
   export default {
     name: "NavMenu",
     props: {
-      menuList: Array
+      menuList: Array,
+      initIndex: Number
     },
     data(){
       return {
         currentIndex: 0
       };
+    },
+    mounted(){
+      this.currentIndex = this.initIndex;
     },
     methods: {
       selectMenu(index){
