@@ -31,6 +31,9 @@
           this.isFirst = false;
           this.firstData.push(...temp);
         }
+        if (this.gpsData.length === 30) {
+          this.gpsData.length = 0;
+        }
         this.gpsData.push([temp[0]-this.firstData[0], temp[1]-this.firstData[1]]);
         this.refreshData();
       }
