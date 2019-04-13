@@ -1,13 +1,47 @@
 <template>
-  <div class="index-container">
-    <div class="introduction-title">桥梁监测简介</div>
-    <img class="introduction-image" src="../assets/brige1.jpg">
-    <div class="introduction-text">
-      桥梁建成以后，由于受气候、环境因素的影响，结构材料会被腐蚀和逐渐老化，长期的静、动力荷载作用，使其强度和刚度随着时间的增加而降低。这不仅会影响行车安全，更会使桥梁的使用寿命缩短。对桥梁结构的健康状况进行检测与监测，并在此基础上对其安全性能进行评估是桥梁运营日常管理的重要内容。桥梁健康监测具有十分重要的作用。
-      桥梁工程实际运营中病桥不断出现，其相应的承载能力评定工作日显重要。
-      大量的文献资料显示，大跨度桥梁运营期病害与事故主要集中在主梁、桥墩的裂缝和变形、以及索力变化等方面。主梁是桥上部结构的主要受力结构，不仅承受弯矩，同时也承受各种水平分力作用，处于受组合力状态。主梁及桥面板在桥梁运营阶段出现最多的病害就是主梁腹板、顶板出现裂缝。裂缝产生的原因很多，如荷载作用、混凝土组成成分、温度变化、混凝土收缩和徐变、基础的不均匀沉降以及钢筋的锈蚀等。许多裂缝往往是几种不同因素联合作用的结果。桥墩病害的主要表现为墩偏位和混凝土裂缝。裂缝的原因与上述主梁发生裂缝的原因基本相同。所以了解桥梁的极限状态、承载潜力以及剩余寿命等对桥梁的合理利用具有重大现实意义。
-      该结构健康监测系统设计通过采集大跨度桥梁主梁的应变、裂缝、加速度、温度等数据为承载能力评定和健康状况评估提供依据。为确保桥梁安全运营、延长桥梁使用寿命，早期发现桥梁病害和节约桥梁的维修费用，建设该大桥健康监测系统十分必要。
-    </div>
+  <div class="layout" ref="body">
+    <Layout>
+      <Sider ref="side1" class="left-container" hide-trigger collapsible :collapsed-width="78" v-model="isCollapsed">
+        <Menu active-name="1-2" theme="light" width="auto" :class="menuitemClasses" @on-select="onSelect">
+          <MenuItem name="检测简介">
+            <Icon type="md-wifi"></Icon>
+            <span>检测简介</span>
+          </MenuItem>
+          <MenuItem name="传感器状态">
+            <Icon type="ios-pie"></Icon>
+            <span >传感器状态</span>
+          </MenuItem>
+          <MenuItem name="实时数据">
+            <Icon type="ios-pin"></Icon>
+            <span >实时数据</span>
+          </MenuItem>
+          <MenuItem name="智能分析">
+            <Icon type="ios-analytics"></Icon>
+            <span >智能分析</span>
+          </MenuItem>
+          <MenuItem name="报警状态">
+            <Icon type="ios-alert"></Icon>
+            <span>报警状态</span>
+          </MenuItem>
+          <MenuItem name="日志打印">
+            <Icon type="ios-print"></Icon>
+            <span >日志打印</span>
+          </MenuItem>
+          <MenuItem name="权限管理">
+            <Icon type="ios-contacts"></Icon>
+            <span >权限管理</span>
+          </MenuItem>
+        </Menu>
+      </Sider>
+      <Layout>
+        <Header :style="{padding: 0}" class="layout-header-bar">
+          <Icon @click.native="collapsedSider" :class="rotateIcon" :style="{margin: '0 20px'}" type="md-menu" size="24"></Icon>
+        </Header>
+        <Content :style="{margin: '20px', background: '#fff', minHeight: '260px'}">
+          <router-view></router-view>
+        </Content>
+      </Layout>
+    </Layout>
   </div>
 </template>
 
@@ -17,40 +51,124 @@
     data () {
       return {
         msg: 'Welcome to Your Vue.js App',
+        isCollapsed: false
       }
     },
     mounted(){
+      this.$refs.body.style.height = window.innerHeight + 'px';
+      this.$router.push({path: '/index/introduction'});
+    },
+    computed: {
+      rotateIcon () {
+        return [
+          'menu-icon',
+          this.isCollapsed ? 'rotate-icon' : ''
+        ];
+      },
+      menuitemClasses () {
+        return [
+          'menu-item',
+          this.isCollapsed ? 'collapsed-menu' : ''
+        ]
+      }
+    },
+    methods: {
+      collapsedSider () {
+        this.$refs.side1.toggleCollapse();
+      },
+      onSelect(name){
+        if (name === '检测简介') {
+          this.$router.push({path: '/index/introduction'});
+        }
+        if (name === '传感器状态') {
+          this.$router.push({path: '/index/sensor-status'});
+        }
+        if (name === '实时数据') {
+          this.$router.push({path: '/index/real-time'});
+        }
+        if (name === '智能分析') {
+          this.$router.push({path: '/index/analyze'});
+        }
+        if (name === '报警状态') {
+          this.$router.push({path: '/index/alarm-status'});
+        }
+        if (name === '日志打印') {
+          this.$router.push({path: '/index/sensor-status'});
+        }
+        if (name === '权限管理') {
+          this.$router.push({path: '/index/sensor-status'});
+        }
 
+
+      }
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
+  .left-container{
+    height: 100%;
+    background-color: #ffffff;
+  }
+  .ivu-layout{
+    height: 100%;
+  }
+  .layout{
+    width: 100%;
+    height: 100%;
+    border: 1px solid #d7dde4;
+    background: #f5f7f9;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .layout-header-bar{
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+  }
+  .layout-logo-left{
+    width: 90%;
+    height: 30px;
+    background: #5b6270;
+    border-radius: 3px;
+    margin: 15px auto;
+  }
+  .menu-icon{
+    transition: all .3s;
+  }
+  .rotate-icon{
+    transform: rotate(-90deg);
+  }
+  .menu-item span{
+    display: inline-block;
+    overflow: hidden;
+    width: 80px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: bottom;
+    transition: width .2s ease .2s;
+  }
+  .menu-item i{
+    transform: translateX(0px);
+    transition: font-size .2s ease, transform .2s ease;
+    vertical-align: middle;
+    font-size: 16px;
+  }
+  .collapsed-menu span{
+    width: 0px;
+    transition: width .2s ease;
+  }
+  .collapsed-menu i{
+    transform: translateX(5px);
+    transition: font-size .2s ease .2s, transform .2s ease .2s;
+    vertical-align: middle;
+    font-size: 18px;
+  }
   .index-container{
     display: flex;
     flex-direction: column;
     padding-left: 10px;
     padding-right: 10px;
-    .introduction-title{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      color: #000;
-      font-weight: bold;
-      margin-top: 5px;
-      margin-bottom: 10px;
-    }
-    .introduction-image{
-      height: 300px;
-    }
-    .introduction-text{
-      font-family:Microsoft YaHei;
-      margin-top: 20px;
-      font-size: 18px;
-      line-height: 30px;
-      text-indent: 30px;
-    }
   }
 </style>

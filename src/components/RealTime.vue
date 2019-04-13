@@ -1,7 +1,9 @@
 <template>
-  <div class="container-fluid">
-    <h1>GPS 实时采集</h1>
-    <p>{{username}}</p>
+  <div class="realtime-container">
+    <img class="main-back" src="../assets/brige1.jpg">
+    <div class="table-container">
+      <Table class="table-content" height="460" :columns="columns1" :data="data1"></Table>
+    </div>
   </div>
 </template>
 
@@ -10,42 +12,181 @@
   export default {
     data () {
       return {
-        msg: 'Welcome to Your Vue.js App',
+        columns1: [
+          {
+            title: '测点编号',
+            key: 'id'
+          },
+          {
+            title: '传感器类型',
+            key: 'sensorType'
+          },
+          {
+            title: '测点类型',
+            key: 'locationType'
+          },
+          {
+            title: '测量时间',
+            key: 'time',
+            width: 200
+          },
+          {
+            title: '报警状态',
+            key: 'status'
+          },
+          {
+            title: '测量值单位（m）',
+            key: 'danwei',
+            width: 200
+          }
+        ],
+        data1: [
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          },
+          {
+            id: 'g1-1',
+            sensorType: 'GPS',
+            locationType: '4',
+            time: '2018/10/29 10:10:39',
+            status: '正常',
+            danwei: '218.64'
+          }
+        ]
       }
     },
     computed:{
-      username(){
-        return this.$route.fullPath
-      }
+
     },
     methods:{
-      goback(){
-        window.history.length > 1
-          ? this.$router.go(-1):this.$router.push('/')
-      }
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="less">
+  .realtime-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    height: 100%;
+    .main-back{
+      margin-top: 20px;
+      width: 90%;
+      min-width: 800px;
+    }
+    .table-container{
+      width: 90%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      overflow-y: scroll;
+      .table-content{
+        width: 100%;
+        &::-webkit-scrollbar{
+          display: none;
+        }
+      }
+      &::-webkit-scrollbar{
+        display: none;
+      }
+    }
 
-  h1, h2 {
-    font-weight: normal;
+    &::-webkit-scrollbar{
+      display: none;
+    }
   }
-
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-
-  li {
-    display: inline-block;
-    margin: 0 10px;
-  }
-
-  a {
-    color: #42b983;
-  }
-
 </style>

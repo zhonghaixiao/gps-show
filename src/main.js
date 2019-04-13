@@ -5,11 +5,17 @@ import App from './App'
 import router from './router'
 import echarts from 'echarts'
 import VueSocketio from 'vue-socket.io'
+import iView from 'iview';
+import 'iview/dist/styles/iview.css';
+
+Vue.use(iView);
 
 Vue.use(VueSocketio, 'http://127.0.0.1:3000/');
 
 Vue.prototype.$echarts = echarts;
 Vue.config.productionTip = false;
+
+
 
 /* eslint-disable no-new */
 new Vue({
